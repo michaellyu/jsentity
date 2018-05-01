@@ -73,7 +73,6 @@ const UserInfo = entity.new(structure2);
   const sql = sqlhelper.getDeleteSql(user);
   console.log(sql); // DELETE FROM `t_user` WHERE `id` = 2;
 })();
-```
 
 // Select
 (() => {
@@ -139,3 +138,4 @@ const UserInfo = entity.new(structure2);
   });
   console.log(sql3); // SELECT `t_user`.`id` AS 'owner_id', `t_user`.`name`, `t_user`.`age`, `t_user_info`.`address`, `t_user_info`.`address` AS 'user_address' FROM `t_user` LEFT JOIN `t_user_info` ON `t_user`.`id` = `t_user_info`.`user_id` AND `t_user`.`info_id` = `t_user_info`.`id` RIGHT JOIN `t_user_info` ON `t_user`.`id` = `t_user_info`.`user_id` WHERE `t_user`.`age` > 13 AND `t_user`.`age` < 18 ORDER BY `t_user`.`name` ASC, `t_user`.`name` ASC, `t_user`.`age` DESC, `t_user_info`.`address` ASC LIMIT 0, 10;
 })();
+```
