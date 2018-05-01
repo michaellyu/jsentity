@@ -18,10 +18,18 @@ const sqlhelper = require('jsentity/mysql-helper');
 const structure = {
   table: 't_user',
   pk: 'id',
-  fields: ['id', 'name', 'age'],
+  fields: ['id', 'name', 'age', 'info_id'],
 };
 
 const User = entity.new(structure);
+
+const structure2 = {
+  table: 't_user_info',
+  pk: 'id',
+  fields: ['id', 'user_id', 'address'],
+};
+
+const UserInfo = entity.new(structure2);
 
 // Select
 (() => {
