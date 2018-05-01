@@ -31,6 +31,50 @@ const structure2 = {
 
 const UserInfo = entity.new(structure2);
 
+// Insert
+(() => {
+  const data = {
+    name: 'Wu',
+    age: 18,
+  };
+  
+  const user = new User(data);
+
+  const sql = sqlhelper.getInsertSql(user);
+  console.log(sql); // INSERT INTO `t_user` (`name`, `age`) VALUES (\'Wu\', 18);SELECT @@IDENTITY;
+})();
+
+// Update
+(() => {
+  const data = {
+    id: 1,
+    name: 'Junjun',
+    age: 18,
+  };
+  
+  const user = new User(data);
+
+  user.name = 'QSir';
+  user.age = 19;
+  const sql = sqlhelper.getUpdateSql(user);
+  console.log(sql); // UPDATE `t_user` SET `name` = \'QSir\', `age` = 19 WHERE `id` = 1;
+})();
+
+// Delete
+(() => {
+  const data = {
+    id: 2,
+    name: 'Yuyu',
+    age: 18,
+  };
+  
+  const user = new User(data);
+
+  const sql = sqlhelper.getDeleteSql(user);
+  console.log(sql); // DELETE FROM `t_user` WHERE `id` = 2;
+})();
+```
+
 // Select
 (() => {
   const sql1 = sqlhelper.getSelectSql(User, {
@@ -95,47 +139,3 @@ const UserInfo = entity.new(structure2);
   });
   console.log(sql3); // SELECT `t_user`.`id` AS 'owner_id', `t_user`.`name`, `t_user`.`age`, `t_user_info`.`address`, `t_user_info`.`address` AS 'user_address' FROM `t_user` LEFT JOIN `t_user_info` ON `t_user`.`id` = `t_user_info`.`user_id` AND `t_user`.`info_id` = `t_user_info`.`id` RIGHT JOIN `t_user_info` ON `t_user`.`id` = `t_user_info`.`user_id` WHERE `t_user`.`age` > 13 AND `t_user`.`age` < 18 ORDER BY `t_user`.`name` ASC, `t_user`.`name` ASC, `t_user`.`age` DESC, `t_user_info`.`address` ASC LIMIT 0, 10;
 })();
-
-// Insert
-(() => {
-  const data = {
-    name: 'Wu',
-    age: 18,
-  };
-  
-  const user = new User(data);
-
-  const sql = sqlhelper.getInsertSql(user);
-  console.log(sql); // INSERT INTO `t_user` (`name`, `age`) VALUES (\'Wu\', 18);SELECT @@IDENTITY;
-})();
-
-// Update
-(() => {
-  const data = {
-    id: 1,
-    name: 'Junjun',
-    age: 18,
-  };
-  
-  const user = new User(data);
-
-  user.name = 'QSir';
-  user.age = 19;
-  const sql = sqlhelper.getUpdateSql(user);
-  console.log(sql); // UPDATE `t_user` SET `name` = \'QSir\', `age` = 19 WHERE `id` = 1;
-})();
-
-// Delete
-(() => {
-  const data = {
-    id: 2,
-    name: 'Yuyu',
-    age: 18,
-  };
-  
-  const user = new User(data);
-
-  const sql = sqlhelper.getDeleteSql(user);
-  console.log(sql); // DELETE FROM `t_user` WHERE `id` = 2;
-})();
-```
